@@ -161,3 +161,8 @@ pip-log.txt
 # Mac crap
 .DS_Store
 
+# 51Degrees
+*Enterprise*.dat
+*Enterprise*.trie
+*Premium*.dat
+*Premium*.trie
