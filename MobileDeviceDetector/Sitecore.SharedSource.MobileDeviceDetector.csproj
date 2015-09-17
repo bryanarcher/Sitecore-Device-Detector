@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>..\..\..\Website\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,26 +36,44 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FiftyOne.Foundation">
-      <HintPath>..\packages\51Degrees.mobi.3.1.4.5\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    <Reference Include="FiftyOne.Foundation, Version=3.2.4.4, Culture=neutral, PublicKeyToken=e0b3a8da0bbce49c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\51Degrees.mobi.3.2.4.4\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Analytics">
+      <HintPath>..\..\..\Website\bin\Sitecore.Analytics.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\Website\bin\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.XML.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Build\Deserialize.aspx.cs">
@@ -72,34 +90,36 @@
     <Compile Include="Build\Package.aspx.designer.cs">
       <DependentUpon>Package.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSetStatus.cs" />
     <Compile Include="DeviceResolver.cs" />
     <Compile Include="DeviceResolverHelper.cs" />
-    <Compile Include="Mobile\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\Conditions\BrowserNameCondition.cs" />
-    <Compile Include="Rules\Conditions\IsEReaderCondition.cs" />
-    <Compile Include="Rules\Conditions\IsConsoleCondition.cs" />
-    <Compile Include="Rules\Conditions\PlatformVendorCondition.cs" />
-    <Compile Include="Rules\Conditions\PlatformNameCondition.cs" />
-    <Compile Include="Rules\Conditions\HardwareVendorCondition.cs" />
-    <Compile Include="Rules\Conditions\HardwareModelCondition.cs" />
-    <Compile Include="Rules\Conditions\StringPropertyCondition.cs" />
-    <Compile Include="Rules\Conditions\IsTabletCondition.cs" />
-    <Compile Include="Rules\Conditions\IsMobileCondition.cs" />
-    <Compile Include="Rules\Conditions\ScreenHeightCondition.cs" />
-    <Compile Include="Rules\Conditions\ScreenWidthCondition.cs" />
-    <Compile Include="Rules\Conditions\UserAgentCondition.cs" />
     <Compile Include="Rules\Conditions\BooleanPropertyCondition.cs" />
+    <Compile Include="Rules\Conditions\BrowserNameCondition.cs" />
+    <Compile Include="Rules\Conditions\BrowserVendorCondition.cs" />
+    <Compile Include="Rules\Conditions\DifferenceCondition.cs" />
+    <Compile Include="Rules\Conditions\DeviceTypeCondition.cs" />
+    <Compile Include="Rules\Conditions\Helper.cs" />
+    <Compile Include="Rules\Conditions\NumberPropertyCondition.cs" />
+    <Compile Include="Rules\Conditions\HardwareVendorCondition.cs" />
+    <Compile Include="Rules\Conditions\HasTouchScreenCondition.cs" />
+    <Compile Include="Rules\Conditions\IsMobileCondition.cs" />
+    <Compile Include="Rules\Conditions\IsTabletCondition.cs" />
+    <Compile Include="Rules\Conditions\LayoutEngineCondition.cs" />
+    <Compile Include="Rules\Conditions\PlatformNameCondition.cs" />
+    <Compile Include="Rules\Conditions\PlatformVendorCondition.cs" />
+    <Compile Include="Rules\Conditions\RangePropertyCondition.cs" />
+    <Compile Include="Rules\Conditions\LookupPropertyCondition.cs" />
+    <Compile Include="Rules\Conditions\ScreenInchesDiagonalCondition.cs" />
+    <Compile Include="Rules\Conditions\ScreenPixelsWidthCondition.cs" />
+    <Compile Include="Rules\Conditions\StringPropertyCondition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="51Degrees.mobi.config" />
-    <None Include="App_Config\Include\Sitecore.SharedSource.MobileDeviceDetector.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -109,16 +129,15 @@
     <Content Include="Build\Package.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Mobile\Default.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -4,9 +4,17 @@
   using Sitecore.Rules;
   using Sitecore.Rules.Conditions;
 
-  public class BooleanPropertyCondition <T> : WhenCondition<T> where T : RuleContext
+  /// <summary>
+  /// Processes a boolean rule at runtime.
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  public class BooleanPropertyCondition<T> : WhenCondition<T> where T : RuleContext
   {
-    public string Value { get; set; }         
+    /// <summary>
+    /// Gets or sets the name of the property the condition relates to.
+    /// </summary>
+    /// <value>The property name.</value>
+    public string Property { get; set; }
 
     /// <summary>
     /// Executes the specified rule context.
@@ -18,7 +26,8 @@
     protected override bool Execute(T ruleContext)
     {
       Assert.ArgumentNotNull(ruleContext, "ruleContext");
-      return DeviceResolverHelper.GetBoolProperty(this.Value);
+      return DeviceResolverHelper.GetBoolProperty(
+        Helper.GetPropertyName(this.Property));
     }
   }
 }

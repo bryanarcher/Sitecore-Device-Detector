@@ -1,0 +1,16 @@
+﻿<item name="{PropertyName}" key="{PropertyNameLower}" id="{PropertyIdGuid}" tid="{C4D09683-5EB3-4D8E-BF9E-13CB41C197B5}" mid="{00000000-0000-0000-0000-000000000000}" sortorder="100" language="en" version="1" template="list folder" parentid="{8AAC0AAA-B1B7-4C23-90A3-71F23AB33570}">
+  <fields>
+    <field tfid="{BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}" key="__updated by" type="text">
+      <content>{PropertiesAuthor}</content>
+    </field>
+    <field tfid="{8CDC337E-A112-42FB-BBB4-4143751E123F}" key="__revision" type="text">
+      <content>{Revision}</content>
+    </field>
+    <field tfid="{25BED78C-4957-4165-998A-CA1B52F67497}" key="__created" type="datetime">
+      <content>{CreatedDateTime}</content>
+    </field>
+    <field tfid="{D9CF14B1-FA16-4BA6-9288-E8A174D4D522}" key="__updated" type="datetime">
+      <content>{UpdateDateTime}</content>
+    </field>
+  </fields>
+</item>

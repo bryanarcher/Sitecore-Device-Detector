@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.SharedSource.MobileDeviceDetector", "MobileDeviceDetector\Sitecore.SharedSource.MobileDeviceDetector.csproj", "{0714D387-CD87-4B08-85C7-9102F89AF8F4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A3A55FC2-5D4F-4020-A5FF-756E5079C92A}"
@@ -10,16 +12,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A3A55F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildPackage", "BuildPackage\BuildPackage.csproj", "{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{6F61F31E-8762-405F-8ADD-536D537AB6BF}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		images\RuleSetEditorDifference.png = images\RuleSetEditorDifference.png
+		images\RuleSetEditorIsMobile.png = images\RuleSetEditorIsMobile.png
+		images\RuleSetEditorScreenSize.png = images\RuleSetEditorScreenSize.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0714D387-CD87-4B08-85C7-9102F89AF8F4}.Release|x64.ActiveCfg = Release|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8E024C-FAAB-42AB-B0B3-01DC20B5DE0C}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

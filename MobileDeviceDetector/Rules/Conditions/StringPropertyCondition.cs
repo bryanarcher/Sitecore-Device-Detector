@@ -3,42 +3,35 @@
   using Sitecore.Diagnostics;
   using Sitecore.Rules;
   using Sitecore.Rules.Conditions;
-
-  /// <summary>
-  /// StringPropertyCondition
-  /// </summary>
-  /// <typeparam name="T"></typeparam>
+  using System;
+  
   public class StringPropertyCondition<T> : StringOperatorCondition<T> where T : RuleContext
   {
     /// <summary>
-    /// Gets or sets the property.
+    /// The value provided in the rule to be compared against.
     /// </summary>
-    /// <value>The property.</value>
-    public string Property { get; set; }
-    
-    /// <summary>
-    /// Gets or sets the value.
-    /// </summary>
-    /// <value>The value.</value>
     public string Value { get; set; }
+
+    /// <summary>
+    /// Gets or sets the name of the property the condition relates to.
+    /// </summary>
+    /// <value>The property name.</value>
+    public string Property { get; set; }
 
     /// <summary>
     /// Executes the specified rule context.
     /// </summary>
     /// <param name="ruleContext">The rule context.</param>
-    /// <returns>Returns value indicating whether specified Device property matches Value or not</returns>
+    /// <returns>
+    /// Returns value indicating whether the specified property is true or not
+    /// </returns>
     protected override bool Execute(T ruleContext)
     {
       Assert.ArgumentNotNull(ruleContext, "ruleContext");
-      string str = this.Value ?? string.Empty;
-      var propertyValue = DeviceResolverHelper.GetStringProperty(this.Property);
-
-      if (!string.IsNullOrEmpty(propertyValue))
-      {
-        return Compare(propertyValue, str);
-      }
-
-      return false;
+      return DeviceResolverHelper.GetStringProperty(
+        Helper.GetPropertyName(this.Property),
+        Helper.GetValueName(this.Value),
+        base.GetOperator());
     }
   }
 }
