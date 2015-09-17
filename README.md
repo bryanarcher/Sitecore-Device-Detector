@@ -126,7 +126,7 @@ The file Device Detection.xml can be used as a Package Designer template to crea
 
 ### Version 1.0.0 - Initial Release
 
-Initial fork of the Mobile Device Detector originaly authored by Alexander Doroshenko. Assemblies which are copyright Sitecore and Courier have been removed. As such the package will not build without access to a Sitecore deployment.
+Initial fork of the Mobile Device Detector originally authored by Alexander Doroshenko. Assemblies which are copyright Sitecore and Courier have been removed. As such the package will not build without access to a Sitecore deployment.
 
 Changes include:
 
