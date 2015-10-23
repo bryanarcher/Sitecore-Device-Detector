@@ -167,3 +167,5 @@ pip-log.txt
 *Premium*.dat
 *Premium*.trie
 51Degrees.dat
+packages/
+!packages/repositories.config

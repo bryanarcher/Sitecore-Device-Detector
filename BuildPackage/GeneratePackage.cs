@@ -37,15 +37,18 @@ namespace BuildPackage
     /// <summary>
     /// Adds the 51Degrees lite data file from the App_Data folder into the
     /// package provided. Checks to ensure that the data file is Lite data.
+    /// Looks in the NuGet packages for the 51Degrees data file.
     /// </summary>
     /// <param name="package">Package the Lite data file should be added to</param>
     private static void Add51DegreesLiteDataFile(ZipFile package)
     {
-      var liteDataFile = new FileInfo("../../App_Data/51Degrees.dat");
-      if (liteDataFile == null)
+      var liteDataFiles = Directory.GetDirectories("..\\..\\..\\packages\\", "51Degrees.mobi.*").SelectMany(i =>
+        new DirectoryInfo(i).GetFiles("content\\App_Data\\51Degrees.dat")).ToArray();
+      if (liteDataFiles == null || liteDataFiles.Length == 0)
       {
-        throw new FileNotFoundException("51Degrees data file could not be found");
+        throw new FileNotFoundException("51Degrees data files could not be found");
       }
+      var liteDataFile = liteDataFiles.OrderByDescending(i => i.LastWriteTimeUtc).FirstOrDefault();
       using (var dataSet = StreamFactory.Create(liteDataFile.FullName))
       {
         if (dataSet.Name != "Lite")
