@@ -22,9 +22,9 @@ namespace BuildPackage
         args[0] : Constants.DEFAULT_51DEGREES_PATH;
       /// Path to the Sitecore package file provided as output. This is the
       /// second paramter of the command.
-      var packageFile = args.Length > 1 ? args[1] : Constants.DEFAULT_PACKAGE_FILE;
+      var packageFile = new FileInfo(args.Length > 1 ? args[1] : Constants.DEFAULT_PACKAGE_FILE);
       /// Path to the Sitecore DLL project file.
-      var projectFile = args.Length > 2 ? args[2] : Constants.DEFAULT_PROJECT_FILE;
+      var projectFile = new FileInfo(args.Length > 2 ? args[2] : Constants.DEFAULT_PROJECT_FILE);
       Console.WriteLine("Loading data set '{0}'", dataFile);
       using (var dataSet = StreamFactory.Create(dataFile))
       {
@@ -39,7 +39,7 @@ namespace BuildPackage
         // Generates template files in the Sitecore package.
         GeneratePackage.Generate(dataSet, packageFile, projectFile);
       }
-      Console.WriteLine("Generated package '{0}'", packageFile);
+      Console.WriteLine("Generated package '{0}'", packageFile.FullName);
       Console.ReadKey();
     }
   }

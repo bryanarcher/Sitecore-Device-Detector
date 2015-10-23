@@ -124,6 +124,10 @@ The file Device Detection.xml can be used as a Package Designer template to crea
 
 ## Recent Changes
 
+### Version 1.0.1 - Updated for 51Degrees 3.2.5.6
+
+* Lite data file updated to most recent version.
+
 ### Version 1.0.0 - Initial Release
 
 Initial fork of the Mobile Device Detector originally authored by Alexander Doroshenko. Assemblies which are copyright Sitecore and Courier have been removed. As such the package will not build without access to a Sitecore deployment.

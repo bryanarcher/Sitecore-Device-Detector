@@ -1,4 +1,5 @@
 ﻿using FiftyOne.Foundation.Mobile.Detection.Entities;
+using FiftyOne.Foundation.Mobile.Detection.Factories;
 using Ionic.Zip;
 using Ionic.Zlib;
 using System;
@@ -18,7 +19,7 @@ namespace BuildPackage
     /// <param name="dataSet">Data set used to create the package file</param>
     /// <param name="packageFile">Location for the generated package file</param>
     /// <param name="projectFile">Location of the MS project file to generate the DLL</param>
-    internal static void Generate(DataSet dataSet, string packageFile, string projectFile)
+    internal static void Generate(DataSet dataSet, FileInfo packageFile, FileInfo projectFile)
     {
       using (var packageInputStream = new MemoryStream())
       {
@@ -27,9 +28,32 @@ namespace BuildPackage
         using (var package = ZipFile.Read(packageInputStream))
         {
           GenerateSitecoreItems(dataSet, package, projectFile);
+          Add51DegreesLiteDataFile(package);
           SaveTemplatePackage(package, packageFile);
         }
       }
+    }
+
+    /// <summary>
+    /// Adds the 51Degrees lite data file from the App_Data folder into the
+    /// package provided. Checks to ensure that the data file is Lite data.
+    /// </summary>
+    /// <param name="package">Package the Lite data file should be added to</param>
+    private static void Add51DegreesLiteDataFile(ZipFile package)
+    {
+      var liteDataFile = new FileInfo("../../App_Data/51Degrees.dat");
+      if (liteDataFile == null)
+      {
+        throw new FileNotFoundException("51Degrees data file could not be found");
+      }
+      using (var dataSet = StreamFactory.Create(liteDataFile.FullName))
+      {
+        if (dataSet.Name != "Lite")
+        {
+          throw new FileLoadException("51Degrees data file is not Lite data");
+        }
+      }
+      package.AddEntry("files/App_Data/51Degrees.dat", File.ReadAllBytes(liteDataFile.FullName));
     }
 
     /// <summary>
@@ -45,7 +69,7 @@ namespace BuildPackage
     /// <param name="dataSet"></param>
     /// <param name="package"></param>
     /// <param name="projectFile"></param>
-    private static void GenerateSitecoreItems(DataSet dataSet, ZipFile package, string projectFile)
+    private static void GenerateSitecoreItems(DataSet dataSet, ZipFile package, FileInfo projectFile)
     {
       package.CompressionLevel = CompressionLevel.None;
       foreach (var property in dataSet.Properties.Where(i =>
@@ -65,7 +89,7 @@ namespace BuildPackage
     /// </summary>
     /// <param name="package"></param>
     /// <param name="projectFile"></param>
-    private static void BuildDlls(ZipFile package, string projectFile)
+    private static void BuildDlls(ZipFile package, FileInfo projectFile)
     {
       var outputPath = Path.Combine(
         Path.GetTempPath(),
@@ -76,7 +100,7 @@ namespace BuildPackage
       {
         Arguments = string.Format(
           @"""{0}"" /t:rebuild /p:Configuration=Release /p:OutputPath=""{1}""", 
-          Path.GetFullPath(projectFile),
+          projectFile.FullName,
           outputPath),
         WorkingDirectory = Path.GetDirectoryName(msBuildPath),
         RedirectStandardOutput = true,
@@ -113,7 +137,7 @@ namespace BuildPackage
     /// Saves the package in the wrapper zip file.
     /// </summary>
     /// <param name="package"></param>
-    private static void SaveTemplatePackage(ZipFile package, string packageFile)
+    private static void SaveTemplatePackage(ZipFile package, FileInfo packageFile)
     {
       using (var outputFile = new ZipFile())
       {
@@ -122,7 +146,7 @@ namespace BuildPackage
           package.Save(packageOutputStream);
           packageOutputStream.Position = 0;
           outputFile.AddEntry(Constants.SUB_PACKAGE_FILE, packageOutputStream);
-          outputFile.Save(packageFile);
+          outputFile.Save(packageFile.FullName);
         }
       }
     }
